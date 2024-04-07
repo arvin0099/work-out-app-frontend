@@ -1,9 +1,7 @@
 import React from 'react';
 import { useState } from "react"; 
 
-
-
-const signup = (props)=>{
+const Signup = (props)=>{
 
     //create a place to store our form data like username and email
     const [form, setForm] = useState(null);
@@ -38,6 +36,15 @@ const signup = (props)=>{
                     <label htmlFor="password"> Password: </label>
                     <input type="password" name="password" autoComplete="true"/>
                 </span>
+                <span>
+                    <label htmlFor="bodyweight"> Weight: </label>
+                    <input type="text" name="bodyWeight"/>
+                </span>
+                <span>
+                    <label htmlFor="birthday">DOB: </label>
+                    <input type="date" name="DOB"/>
+                </span>
+
                 <input type="submit" value="Sign up"/>
             </form>
         
@@ -45,4 +52,4 @@ const signup = (props)=>{
     )
 }
 
-export default signup
+export default Signup

@@ -1,7 +1,7 @@
 import React from 'react';
-import { useState } from "react";
+import { useState } from 'react';
 
-const login = (props) => {
+const Login = (props) => {
     
     // Create a place to store our form data, like username and password.
     const [form, setForm] = useState(null);
@@ -55,4 +55,4 @@ const login = (props) => {
     )
 }
 
-export default login
+export default Login

@@ -34,15 +34,15 @@ const Signup = (props)=>{
                 </span>
                 <span>
                     <label htmlFor="password"> Password: </label>
-                    <input type="password" name="password" autoComplete="true"/>
+                    <input type="password" name="password" autoComplete="true" onChange={handleChange}/>
                 </span>
                 <span>
                     <label htmlFor="bodyweight"> Weight: </label>
-                    <input type="text" name="bodyWeight"/>
+                    <input type="text" name="bodyWeight" onChange={handleChange}/>
                 </span>
                 <span>
                     <label htmlFor="birthday">DOB: </label>
-                    <input type="date" name="DOB"/>
+                    <input type="date" name="DOB"onChange={handleChange}/>
                 </span>
 
                 <input type="submit" value="Sign up"/>

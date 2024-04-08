@@ -29,7 +29,7 @@ function App() {
     })
     //get response from the server
     const data = await response.json()
-    console.log(data)
+    console.log("handle Signup", data)
     //navigate to the login page
     navigate("/login")
   }

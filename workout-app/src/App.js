@@ -2,6 +2,7 @@ import {Routes, Route, useNavigate} from 'react-router-dom';
 import {useState} from 'react';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Navbar from './components/Navbar';
 import Home from './components/Home';
 import './App.css'
 
@@ -65,7 +66,7 @@ function App() {
     <div className="App">
       
       <Routes>
-        <Route path='/home' element={<Home /> }/>
+        <Route path='/home' element={<Home  handleLogin={handleLogin} handleSignup={handleSignUp}/> }/>
         <Route path='/login' element={<Login handleLogin={handleLogin}></Login>} />
         <Route path='/signup' element={ <Signup handleSignup={handleSignUp}></Signup>} />
       </Routes>

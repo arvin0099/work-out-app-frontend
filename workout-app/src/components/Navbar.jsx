@@ -2,7 +2,7 @@ import React from 'react';
 import Login from './Login';
 import Signup from './Signup';
 
-function Navbar(props) {
+function Navbar({handleLogin, handleSignUp}) {
   return (
     <>
 
@@ -25,7 +25,7 @@ function Navbar(props) {
         <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>open modal</button>
         <dialog id="my_modal_1" className="modal">
             <div className="modal-box">
-                <Login props={props}/>
+                <Login handleLogin={handleLogin}/>
             </div>
             <form method="dialog" className="modal-backdrop">
                 <button>close</button>
@@ -37,7 +37,7 @@ function Navbar(props) {
         <button className="btn" onClick={()=>document.getElementById('my_modal_2').showModal()}>open modal</button>
         <dialog id="my_modal_2" className="modal">
             <div className="modal-box">
-                 <Signup props={props}/>
+                 <Signup handleSignUp={handleSignUp}/>
             </div>
             <form method="dialog" className="modal-backdrop">
                 <button>close</button>

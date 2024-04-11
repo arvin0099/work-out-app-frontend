@@ -1,10 +1,10 @@
 import React from 'react'
 import Navbar from './Navbar';
 
-const Home = (props) => {
+const Home = ({handleLogin, handleSignUp}) => {
   return (
     <div>
-        <Navbar props={props} />
+        <Navbar handleLogin={handleLogin} handleSignUp={handleSignUp} />
     </div>
   )
 }

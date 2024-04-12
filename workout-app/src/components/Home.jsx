@@ -1,11 +1,10 @@
 import React from 'react'
+import Navbar from './Navbar';
 
-const Home = () => {
+const Home = ({handleLogin, handleSignUp}) => {
   return (
     <div>
-    <h1 class="text-3l font-bold underline">
-    Hello world!!
-  </h1>
+        <Navbar handleLogin={handleLogin} handleSignUp={handleSignUp} />
     </div>
   )
 }

@@ -2,6 +2,7 @@ import {Routes, Route, useNavigate} from 'react-router-dom';
 import {useState} from 'react';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Navbar from './components/Navbar';
 import Home from './components/Home';
 import './App.css'
 
@@ -60,14 +61,12 @@ function App() {
 
   }
 
-
   return (
     <div className="App">
-      
       <Routes>
-        <Route path='/home' element={<Home /> }/>
-        <Route path='/login' element={<Login handleLogin={handleLogin}></Login>} />
-        <Route path='/signup' element={ <Signup handleSignup={handleSignUp}></Signup>} />
+        <Route path='/home' element={<Home  handleLogin={handleLogin} handleSignUp={handleSignUp}/> }/>
+        {/* Route for Routine*/}
+        {/* Route for user profile card*/}
       </Routes>
       
     </div>

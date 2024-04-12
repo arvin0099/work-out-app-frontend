@@ -1,10 +1,11 @@
-import React from 'react';
-import { useState } from 'react';
+import React from 'react'; 
+import { useState} from 'react';
 
 const Login = (props) => {
     
     // Create a place to store our form data, like username and password.
     const [form, setForm] = useState(null);
+    const modal = props.myModalRef.current;
 
     // Create a place to store any error messages, like if the login doesn't work.
     const [errorMsg, setErrorMsg] = useState("");
@@ -13,13 +14,16 @@ const Login = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault(); // This stops the page from refreshing when we submit the form.
         let submission = await props.handleLogin(form);
-
+        console.log("submission:", submission);
         // Ask the server if our login details are correct.
         if(submission) {
-
-            // If the server says something is wrong, show the error message.
+           
             setErrorMsg(submission.error);
         }
+
+        //document.getElementById('my_modal_1').showModal()
+        // If the server says something is wrong, show the error message.
+        modal.close();
     }
 
     // Define what should happen when we change something in the form.
@@ -51,6 +55,8 @@ const Login = (props) => {
                     </label>
               
                 <input type="submit" value="login"/>
+
+                {errorMsg ? <h4 style={{color: "red"}}>{errorMsg}</h4> : ""}
             </form>
             {/*add error handler below*/}
         

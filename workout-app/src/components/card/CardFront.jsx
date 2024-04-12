@@ -2,7 +2,7 @@ import React from 'react';
 import CardTitle from './CardTitle';
 import CardBody from './CardBody';
 
-const CardFront = ({ content, onButtonClick, buttonColor }) => {
+const CardFront = ({ content, onButtonClick, buttonColor, buttonName }) => {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-start p-3 bg-slate-200 rounded-lg shadow-lg transform backface-hidden">
       <div className="w-full">
@@ -27,7 +27,7 @@ const CardFront = ({ content, onButtonClick, buttonColor }) => {
             }}
           className={`btn btn-outline btn-accent absolute bottom-2 right-2 btn-sm`}
           >
-            Check workout
+            {buttonName}
       </button>
       </div>
     </div>

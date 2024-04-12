@@ -3,7 +3,7 @@ import { useState } from 'react'
 import CardFront from './CardFront'
 import CardBack from './CardBack'
 
-const Card = ({ frontContent, backContent, onButtonClick, buttonColor }) => {
+const Card = ({ frontContent, backContent, onButtonClick, buttonColor, buttonName }) => {
     
   const [isFlipped, setIsFlipped] = useState(false)
 
@@ -18,7 +18,7 @@ const Card = ({ frontContent, backContent, onButtonClick, buttonColor }) => {
       <div
         className={`shadow-xl relative w-full h-full transition-transform duration-500 transform ${isFlipped ? 'rotate-y-180' : ''} `}
       >
-        <CardFront content={frontContent} onButtonClick={onButtonClick} buttonColor={buttonColor} />
+        <CardFront content={frontContent} onButtonClick={onButtonClick} buttonColor={buttonColor} buttonName={buttonName} />
         <CardBack content={backContent} />
       </div>
     </div>

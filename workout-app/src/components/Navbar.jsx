@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Login from './Login';
 import Signup from './Signup';
 
-function Navbar({handleLogin, handleSignUp}) {
+
+function Navbar({handleLogin, handleSignUp, isLoggedIn}) {
+
+    const myModalRef = useRef(null);
+
   return (
     <>
 
@@ -13,7 +17,7 @@ function Navbar({handleLogin, handleSignUp}) {
             </button>
         </div>
         <div className="flex-1">
-            <a className="btn btn-ghost text-xl">daisyUI</a>
+            <a className="btn btn-ghost text-xl">Fitness App</a>
         </div>
         <div className="flex-none">
             <button className="btn btn-square btn-ghost">
@@ -22,10 +26,11 @@ function Navbar({handleLogin, handleSignUp}) {
         </div>
         {/*Modal button and modal box for login*/}
         {/* Open the modal using document.getElementById('ID').showModal() method */}
-        <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>open modal</button>
-        <dialog id="my_modal_1" className="modal">
+        {!isLoggedIn ? <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>Log-in</button>: ""}
+        <dialog id="my_modal_1" className="modal" ref={myModalRef}>
             <div className="modal-box">
-                <Login handleLogin={handleLogin}/>
+                
+                 <Login handleLogin={handleLogin} myModalRef={myModalRef}/> 
             </div>
             <form method="dialog" className="modal-backdrop">
                 <button>close</button>
@@ -34,10 +39,10 @@ function Navbar({handleLogin, handleSignUp}) {
 
 
         {/*Modal button and modal box for signup*/}
-        <button className="btn" onClick={()=>document.getElementById('my_modal_2').showModal()}>open modal</button>
+        {!isLoggedIn ?<button className="btn" onClick={()=>document.getElementById('my_modal_2').showModal()}>Sign-up</button>: ""}
         <dialog id="my_modal_2" className="modal">
             <div className="modal-box">
-                 <Signup handleSignUp={handleSignUp}/>
+                 {<Signup handleSignUp={handleSignUp}/>}
             </div>
             <form method="dialog" className="modal-backdrop">
                 <button>close</button>

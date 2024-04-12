@@ -50,7 +50,7 @@ const Signup = (props)=>{
                     </label>
                 
                     <label className="input input-bordered flex items-center gap-2" htmlFor="birthday">
-                    <input type="date" name="DOB"onChange={handleChange}/>
+                    <input type="date" name="DOB" onChange={handleChange}/>
                     </label>
                     
 

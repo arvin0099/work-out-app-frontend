@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import Card from './Card'
-// import { routines } from '../../data'
+import { routines } from '../../data'
 import { useParams } from "react-router-dom";
+import { logDOM } from '@testing-library/react';
 
-const CardApp = ({routines}) => {
+const CardApp = ({}) => {
   const buttonColor = 'bg-blue-500'
   const [buttonName, setButtonName] = useState('Show Exercises')
   const [sideButtonName, setsideButtonName] = useState('Start Workout')
-  const [currentContent, setCurrentContent] = useState(routines.routines || [])
+  const [currentContent, setCurrentContent] = useState(routines)
   const [displayExercises, setDisplayExercises] = useState(false)
   const [animationKey, setAnimationKey] = useState(0)
+
+  console.log(routines);
 
   const handleExerciseClick = (routine) => {
     if (routine && routine.exercises) {
@@ -23,7 +26,7 @@ const CardApp = ({routines}) => {
   }
 
   const handleBackToRoutines = () => {
-    setCurrentContent(routines.routines)
+    setCurrentContent(routines)
     setDisplayExercises(false)
     setButtonName('Show Exercises')
     setAnimationKey(prevKey => prevKey + 1)

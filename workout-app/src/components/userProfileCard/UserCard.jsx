@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import UCardFront from './UCardFrontData'
 import UCardBack from './UCardBack'
+import user from '../../dataUser'
 
 
-const UCard = ({user, isLoggedIn}) => {
+const UCard = ({isLoggedIn}) => {
 
     console.log(user)
 
@@ -24,7 +25,7 @@ const UCard = ({user, isLoggedIn}) => {
     </div>
     )
 
-    return isLoggedIn ? userCard : <></>
+    return userCard
 }
 
 export default UCard

@@ -100,7 +100,7 @@ const cards= [
         name: 'Chest Workout',
         exercises: [
             { name: 'Push ups', sets: 2, reps: 12, weight: 10 },
-            { name: 'Bench Press', sets: 2, reps: 12, weight: 10 }
+            { name: 'Bench Press', sets: 3, reps: 10, weight: 15 }
         ],
         day: ['Monday', 'Tuesday']
     },
@@ -108,9 +108,9 @@ const cards= [
         name: 'Abs Workout',
         exercises: [
             { name: 'Sit Ups', sets: 23, reps: 12, weight: 10 },
-            { name: 'Sit Ups', sets: 21, reps: 12, weight: 10 },
-            { name: 'Sit Ups', sets: 22, reps: 12, weight: 10 },
-            { name: 'Sit Ups', sets: 24, reps: 12, weight: 10 },
+            { name: 'Sit Upssss', sets: 21, reps: 12, weight: 10 },
+            { name: 'Sit Upss', sets: 22, reps: 12, weight: 10 },
+            { name: 'Sit Upssssss', sets: 24, reps: 12, weight: 10 },
             { name: 'Byccile', sets: 25, reps: 12, weight: 10 }
         ],
         day: ['Monday', 'Tuesday']

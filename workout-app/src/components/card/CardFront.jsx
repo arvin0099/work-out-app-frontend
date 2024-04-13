@@ -2,8 +2,8 @@ import React from 'react';
 import CardTitle from './CardTitle';
 import CardBody from './CardBody';
 
-const CardFront = ({ content, onButtonClick, buttonColor, buttonName, sideButtonName, onSideButtonClick }) => {
-  console.log(content)
+const CardFront = ({ content, onButtonClick, buttonColor, buttonName, sideButtonName, onSideButtonClick, displayExercises }) => {
+  console.log(displayExercises)
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-start p-3 bg-slate-200 rounded-lg shadow-lg transform backface-hidden">
       <div className="w-full">
@@ -36,18 +36,20 @@ const CardFront = ({ content, onButtonClick, buttonColor, buttonName, sideButton
         >
           {buttonName}
         </button>
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            onButtonClick()
-          }}
-          className={`btn ${buttonColor} absolute bottom-2 left-2 btn-sm text-white`}
-        >
-          {sideButtonName}
-        </button>
+        {displayExercises && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onSideButtonClick();
+            }}
+            className={`btn ${buttonColor} absolute bottom-2 left-2 btn-sm text-white`}
+          >
+            {sideButtonName}
+          </button>
+        )}
       </div>
     </div>
   )
 }
 
-export default CardFront;
+export default CardFront

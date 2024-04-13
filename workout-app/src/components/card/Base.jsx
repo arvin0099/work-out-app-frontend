@@ -4,7 +4,6 @@ import Card from './Card'
 import { useParams } from "react-router-dom";
 
 const CardApp = ({routines}) => {
-  console.log(routines.routines[0].exercises)
   const buttonColor = 'bg-blue-500'
   const [buttonName, setButtonName] = useState('Show Exercises')
   const [sideButtonName, setsideButtonName] = useState('Start Workout')

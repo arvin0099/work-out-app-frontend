@@ -9,11 +9,21 @@ const CardBack = ({ content, onButtonClick, buttonColor, buttonName, displayExer
     weight: content.weight || 0
   })
 
+  // userId = content
+
+
   let token = localStorage.getItem("authoToken")
+  userId = localStorage.getItem("userID")
+  routineId = content._id
+  // exerciseId = content.
+
+  console.log(userId)
+  console.log(routineId)
 
   const URL = `http://localhost:4000/user/${userId}/routine/${routineId}/exercise/${exerciseId}`
 
   useEffect(() => {
+    console.log(content);
     if (content && content.exercises) {
       setExerciseDetails({
         sets: content.exercises.sets || 0,

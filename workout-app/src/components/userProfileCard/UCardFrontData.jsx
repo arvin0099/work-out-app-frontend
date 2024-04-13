@@ -3,14 +3,14 @@ import UCardBody from "./UCardBody";
 import UCardTitle from "./UCardTitle";
 import {cards, workOut} from "../../data";
 
-const UCardFront = ({ flipToBack, user }) => {
+const UCardFront = ({ flipToBack, userData, routines}) => {
     return (
       <div className="absolute inset-0 flex flex-col items-center justify-start p-3 bg-stone-300 rounded-lg shadow-lg transform backface-hidden">
         <div className="w-full">
-          <UCardTitle user={user} />
+          <UCardTitle {...userData} />
         </div>
         <div className="w-full flex-1 overflow-auto mt-2 mb-10 bg-slate-100">
-        <UCardBody user={user}/>
+        <UCardBody userData={userData} routines={routines}/>
           <button className="btn btn-primary absolute bottom-2 right-2 btn-sm" onClick={flipToBack}>
             Edit User
           </button>

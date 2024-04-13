@@ -13,12 +13,18 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [routines, setRoutines] = useState(null);
+  const [userData, setUserData] = useState(() => {
+    // Initialize state from localStorage if available
+    const savedUserData = localStorage.getItem('userData');
+    return savedUserData ? JSON.parse(savedUserData) : null;
+  });
 
   //use useNavigate to change pages in our app
   const navigate = useNavigate();
 
   //set URL for server
   const URL = "http://localhost:4000/api/";
+
 
   //define what should happen when a user signs up
   const getRoutines = async(id) => {
@@ -36,10 +42,11 @@ function App() {
     })
     //get response from the server
     const data = await response.json();
-
+    
     setRoutines(data);
-    //navigate to the login page
-    navigate("/home")
+    console.log("routines",data);
+    //navigate to the home page
+    //navigate("/home")
   }
 
   //define what should happen when a user signs up
@@ -70,16 +77,22 @@ function App() {
     })
     //get the response from the server
     const data = await response.json();
-
+    setUserData(data);
+    console.log("data entering", data);
+    console.log("this the one", userData);
     //if the login is successful save the token and set isLoggedIn to true
     if(response.status !== 200 ) {
       //setIsLoggedIn(true);
+      console.log("unsuccessful");
       return data;
+      
     }
+      
       //save this item in the browser's storage for easy future retrieval
       localStorage.setItem("authoToken", data.token);
       localStorage.setItem("userID", data.id);
       localStorage.setItem("userName", data.username)
+      localStorage.setItem("userData", JSON.stringify(data)); 
       setIsLoggedIn(true);
       navigate("/home");
   }
@@ -100,7 +113,8 @@ function App() {
         setIsLoggedIn(false);
       } else {
         getRoutines(localStorage.getItem("userID"));
-        console.log(routines);
+        console.log("use effect", localStorage.getItem("userData"));
+        console.log("user data", userData);
         setIsLoggedIn(true);
       }
 
@@ -114,7 +128,7 @@ function App() {
       <Routes>
         <Route path={ `/home` } element={<Home isLoggedIn={isLoggedIn}/>}/>
         <Route path={ `/routines` } element={<CardApp isLoggedIn={isLoggedIn} routines={routines}/>}/> 
-        <Route path='/userProfile' element={<UserCard isLoggedIn={isLoggedIn}/>}/> 
+        <Route path='/userProfile' element={<UserCard isLoggedIn={isLoggedIn} userData={userData} routines={routines.routines}/>}/> 
       </Routes>
       
     </div>

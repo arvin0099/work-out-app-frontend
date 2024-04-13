@@ -27,7 +27,7 @@ const CardBack = ({ content, onButtonClick, buttonColor, buttonName, displayExer
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${yourAuthToken}`
+          "Authorization": `Bearer ${localStorage.getItem("authoToken")}`
         },
         body: JSON.stringify(exerciseDetails)
       })

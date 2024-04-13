@@ -7,7 +7,6 @@ import { BrowserRouter as Router} from 'react-router-dom';
 // import CardApp from './components/card/Base';
 import Routines from './Pages/Routines';
 import App from './App';
-import { BrowserRouter as Router} from 'react-router-dom';
 //import CardApp from './components/card/Base';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

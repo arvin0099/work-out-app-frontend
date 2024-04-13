@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import Card from './Card'
+import Card from './Card';
+import {cards, workOut} from '../../data.js';
+import user from '../../dataUser.js';
 
 const CardApp = () => {
   const buttonColor = 'bg-blue-500'
@@ -14,7 +16,7 @@ const CardApp = () => {
       },
       backContent: item.backContent
     }))
-    setCards(newCards)
+    //setCards(newCards)
     setAnimationKey(prevKey => prevKey + 1)
   }
 

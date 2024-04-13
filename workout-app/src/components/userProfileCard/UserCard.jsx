@@ -3,7 +3,9 @@ import UCardFront from './UCardFrontData'
 import UCardBack from './UCardBack'
 
 
-const UCard = ({user}) => {
+const UCard = ({user, isLoggedIn}) => {
+
+    console.log(user)
 
     const [isFlipped, setIsFlipped] = useState(false);
 

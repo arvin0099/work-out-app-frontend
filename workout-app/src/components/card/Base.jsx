@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import Card from './Card'
-import { routines } from '../../data'
+// import { routines } from '../../data'
 import { useParams } from "react-router-dom";
 
-const CardApp = ({}) => {
+const CardApp = ({routines}) => {
+  console.log(routines.routines)
   const buttonColor = 'bg-blue-500'
   const [buttonName, setButtonName] = useState('Show Exercises')
   const [sideButtonName, setsideButtonName] = useState('Start Workout')
-  const [currentContent, setCurrentContent] = useState(routines)
+  const [currentContent, setCurrentContent] = useState(routines.routines)
   const [displayExercises, setDisplayExercises] = useState(false)
   const [animationKey, setAnimationKey] = useState(0)
 
   const handleExerciseClick = (routine) => {
-    if (routine && routine.exercises) {
-      setCurrentContent(routine.exercises)
+    if (routine && routine.routines) {
+      setCurrentContent(routine.routines)
       setDisplayExercises(true)
       setButtonName('Back to Routines')
       setAnimationKey(prevKey => prevKey + 1)
@@ -23,15 +24,21 @@ const CardApp = ({}) => {
   }
 
   const handleBackToRoutines = () => {
-    setCurrentContent(routines)
+    setCurrentContent(routines.routines)
     setDisplayExercises(false)
     setButtonName('Show Exercises')
     setAnimationKey(prevKey => prevKey + 1)
   } 
 
-  console.log("base routines", routines); 
-
-  console.log(routines)
+  if (!currentContent.length || currentContent.length === 0) {
+    return (
+        <div className="flex justify-center items-center min-h-screen bg-slate-500">
+            <div className="text-white text-xl">
+                No data available.
+            </div>
+        </div>
+    )
+}
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-slate-500">

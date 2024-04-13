@@ -1,6 +1,7 @@
 import React from 'react';
 
 const UCardTitle = ({user}) => {
+    console.log(user)
   return (
   <div className="w-full p-1">
     <p className="text-2xl font-bold truncate text-black">Welcome {user.username}!</p>

@@ -107,11 +107,11 @@ const cards= [
     {
         name: 'Abs Workout',
         exercises: [
-            { name: 'Sit Ups', sets: 2, reps: 12, weight: 10 },
-            { name: 'Sit Ups', sets: 2, reps: 12, weight: 10 },
-            { name: 'Sit Ups', sets: 2, reps: 12, weight: 10 },
-            { name: 'Sit Ups', sets: 2, reps: 12, weight: 10 },
-            { name: 'Byccile', sets: 2, reps: 12, weight: 10 }
+            { name: 'Sit Ups', sets: 23, reps: 12, weight: 10 },
+            { name: 'Sit Ups', sets: 21, reps: 12, weight: 10 },
+            { name: 'Sit Ups', sets: 22, reps: 12, weight: 10 },
+            { name: 'Sit Ups', sets: 24, reps: 12, weight: 10 },
+            { name: 'Byccile', sets: 25, reps: 12, weight: 10 }
         ],
         day: ['Monday', 'Tuesday']
     },

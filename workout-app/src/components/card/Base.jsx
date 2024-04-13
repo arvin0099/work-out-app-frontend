@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Card from './Card'
+import {cards, workOut} from "../../data";
 
 const CardApp = () => {
   const buttonColor = 'bg-blue-500'

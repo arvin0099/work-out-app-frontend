@@ -12,12 +12,35 @@ import CardApp from './components/card/Base';
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [routines, setRoutines] = useState(null);
 
   //use useNavigate to change pages in our app
   const navigate = useNavigate();
 
   //set URL for server
   const URL = "http://localhost:4000/api/";
+
+  //define what should happen when a user signs up
+  const getRoutines = async(id) => {
+    //send the user's info to our server
+    id = localStorage.userID;
+    const token = localStorage.getItem("authoToken");
+    console.log("my id is", id);
+
+    const response = await fetch(URL + `user/${id}/routines`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": token
+      }
+    })
+    //get response from the server
+    const data = await response.json();
+
+    setRoutines(data);
+    //navigate to the login page
+    navigate("/home")
+  }
 
   //define what should happen when a user signs up
   const handleSignUp = async(user) => {
@@ -31,7 +54,6 @@ function App() {
     })
     //get response from the server
     const data = await response.json()
-    console.log("handle Signup", data)
     //navigate to the login page
     navigate("/login")
   }
@@ -58,13 +80,11 @@ function App() {
       localStorage.setItem("authoToken", data.token);
       localStorage.setItem("userID", data.id);
       localStorage.setItem("userName", data.username)
-      console.log("data", data);
       setIsLoggedIn(true);
       navigate("/home");
   }
 
     const handleLogout = () => {
-      console.log("in handle log");
       localStorage.removeItem("authoToken");
       localStorage.removeItem("userID");
       localStorage.removeItem("userName");
@@ -75,20 +95,25 @@ function App() {
     useEffect(()=> {
       //UI remains upon refresh depending on isLoggedIn
       let token = localStorage.getItem("authoToken");
-      console.log(token);
+      
       if(!token){
         setIsLoggedIn(false);
       } else {
+        getRoutines(localStorage.getItem("userID"));
+        console.log(routines);
         setIsLoggedIn(true);
       }
+
     }, []);
+
+
 
   return (
     <div className="App">
         <Navbar handleLogin={handleLogin} handleSignUp={handleSignUp} handleLogout={handleLogout} isLoggedIn={isLoggedIn}/>
       <Routes>
-        <Route path='/home' element={<Home isLoggedIn={isLoggedIn}/>}/>
-        <Route path='/routines' element={<CardApp isLoggedIn={isLoggedIn}/>}/> 
+        <Route path={ `/home` } element={<Home isLoggedIn={isLoggedIn}/>}/>
+        <Route path={ `/routines` } element={<CardApp isLoggedIn={isLoggedIn} routines={routines}/>}/> 
         <Route path='/userProfile' element={<UserCard isLoggedIn={isLoggedIn}/>}/> 
       </Routes>
       

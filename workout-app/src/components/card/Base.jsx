@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
 import Card from './Card'
 import {cards, workOut} from "../../data";
+import { useParams } from "react-router-dom";
 
-const CardApp = () => {
+
+const CardApp = ({routines, isLoggedIn}) => {
   const buttonColor = 'bg-blue-500'
   const buttonName = 'test'
-  const [animationKey, setAnimationKey] = useState(0)
+  const [animationKey, setAnimationKey] = useState(0);
+  const params = useParams();
 
   const handleButtonClick = () => {
     const newCards = workOut.map(item => ({
@@ -17,7 +20,9 @@ const CardApp = () => {
     }))
     //setCards(newCards)
     setAnimationKey(prevKey => prevKey + 1)
-  }
+  } 
+
+  console.log("base routines", routines); 
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-slate-500">

@@ -1,5 +1,5 @@
 import {Routes, Route, useNavigate} from 'react-router-dom';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Home from './components/Home';
 import './App.css'
 
@@ -9,7 +9,6 @@ import './App.css';
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
 
   //use useNavigate to change pages in our app
   const navigate = useNavigate();
@@ -45,25 +44,46 @@ function App() {
       body: JSON.stringify(user)
     })
     //get the response from the server
-    const data = response.json();
+    const data = await response.json();
 
     //if the login is successful save the token and set isLoggedIn to true
-    if(response.status !== 200) {
+    if(response.status !== 200 ) {
       //setIsLoggedIn(true);
       return data;
     }
-
-    //save this item in the browser's storage for easy future retrieval
-    localStorage.setItem("authoToken", data.token);
-    setIsLoggedIn(true);
-    navigate("/home");
-
+      //save this item in the browser's storage for easy future retrieval
+      localStorage.setItem("authoToken", data.token);
+      localStorage.setItem("userID", data.id);
+      localStorage.setItem("userName", data.username)
+      console.log("data", data);
+      setIsLoggedIn(true);
+      navigate("/home");
   }
+
+    const handleLogout = () => {
+      console.log("in handle log");
+      localStorage.removeItem("authoToken");
+      localStorage.removeItem("userID");
+      localStorage.removeItem("userName");
+      setIsLoggedIn(false);
+      navigate('/home')
+    }
+
+    useEffect(()=> {
+      //UI remains upon refresh depending on isLoggedIn
+      let token = localStorage.getItem("authoToken");
+      console.log(token);
+      if(!token){
+        setIsLoggedIn(false);
+      } else {
+        setIsLoggedIn(true);
+      }
+    }, []);
 
   return (
     <div className="App">
       <Routes>
-        <Route path='/home' element={<Home  handleLogin={handleLogin} handleSignUp={handleSignUp} isLoggedIn={isLoggedIn}/>}/>
+        <Route path='/home' element={<Home handleLogout={handleLogout} handleLogin={handleLogin} handleSignUp={handleSignUp} isLoggedIn={isLoggedIn}/>}/>
         {/* Route for Routine*/}
         {/* Route for user profile card*/}
       </Routes>

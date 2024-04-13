@@ -9,7 +9,7 @@ const CardBack = ({ content, onButtonClick, buttonColor, buttonName, displayExer
     weight: content.weight || 0
   })
 
-  const URL = `/user/${userId}/routine/${routineId}/exercise/${exerciseId}`
+  const URL = `http://localhost:4000/user/${userId}/routine/${routineId}/exercise/${exerciseId}`
 
   useEffect(() => {
     if (content && content.exercises) {

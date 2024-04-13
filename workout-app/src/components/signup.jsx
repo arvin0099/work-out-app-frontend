@@ -46,7 +46,7 @@ const Signup = (props)=>{
                         <div className="label">
                             <span className="label-text">Optional</span>
                         </div>
-                        <input type="text" name="bodyWeight" onChange={handleChange}/>
+                        <input type="text" name="bodyWeight" placeholder="Body weight" onChange={handleChange}/>
                     </label>
                 
                     <label className="input input-bordered flex items-center gap-2" htmlFor="birthday">

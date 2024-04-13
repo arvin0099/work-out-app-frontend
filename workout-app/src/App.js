@@ -1,10 +1,13 @@
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import {useState, useEffect} from 'react';
+import Navbar from './components/Navbar';
 import Home from './components/Home';
+import UserCard from './components/userProfileCard/UserCard';
 import './App.css'
 
 import logo from './logo.svg';
 import './App.css';
+import CardApp from './components/card/Base';
 
 function App() {
 
@@ -82,10 +85,11 @@ function App() {
 
   return (
     <div className="App">
+        <Navbar handleLogin={handleLogin} handleSignUp={handleSignUp} handleLogout={handleLogout} isLoggedIn={isLoggedIn}/>
       <Routes>
-        <Route path='/home' element={<Home handleLogout={handleLogout} handleLogin={handleLogin} handleSignUp={handleSignUp} isLoggedIn={isLoggedIn}/>}/>
-        {/* Route for Routine*/}
-        {/* Route for user profile card*/}
+        <Route path='/home' element={<Home isLoggedIn={isLoggedIn}/>}/>
+        <Route path='/routines' element={<CardApp isLoggedIn={isLoggedIn}/>}/> 
+        <Route path='/userProfile' element={<UserCard isLoggedIn={isLoggedIn}/>}/> 
       </Routes>
       
     </div>

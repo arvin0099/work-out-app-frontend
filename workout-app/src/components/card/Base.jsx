@@ -15,7 +15,7 @@ const CardApp = () => {
       },
       backContent: item.backContent
     }))
-    setCards(newCards)
+    //setCards(newCards)
     setAnimationKey(prevKey => prevKey + 1)
   }
 

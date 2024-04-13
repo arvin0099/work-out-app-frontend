@@ -9,6 +9,8 @@ const CardBack = ({ content, onButtonClick, buttonColor, buttonName, displayExer
     weight: content.weight || 0
   })
 
+  let token = localStorage.getItem("authoToken")
+
   const URL = `http://localhost:4000/user/${userId}/routine/${routineId}/exercise/${exerciseId}`
 
   useEffect(() => {
@@ -23,25 +25,19 @@ const CardBack = ({ content, onButtonClick, buttonColor, buttonName, displayExer
 
   const updateWorkout = async () => {
     try {
-      const response = await fetch(URL, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${yourAuthToken}`
-        },
-        body: JSON.stringify(exerciseDetails)
-      })
-      const data = await response.json();
-      console.log('Update successful:', data);
-      if (response.ok) {
-        onButtonClick()
-      } else {
-        throw new Error(data.message || 'Unknown error occurred')
-      }
+        const response = await fetch(URL, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(exerciseDetails)
+        })
+        const data = await response.json();
     } catch (error) {
-      console.error('Failed to update exercise:', error)
+        console.error('Failed to update exercise:', error)
     }
-  }
+}
 
   const handleIncrement = (field, e) => {
     e.stopPropagation()
@@ -70,11 +66,12 @@ const CardBack = ({ content, onButtonClick, buttonColor, buttonName, displayExer
       <div className="w-full flex-1 overflow-auto mt-2 mb-10 text-black">
         <ul className="flex flex-col w-full">
         {content.day ? (
-          content.day.map((day, index) => (
-            <li key={index} className="divider">
-              {day}
-            </li>
-          ))
+            <>
+              <h1 className='font-extrabold'>Workout Days</h1>
+              {content.day.map((day, index) => (
+                <li key={index} className="divider">{day}</li>
+              ))}
+            </>
           ) : (
             <>
               <li className='divider'>

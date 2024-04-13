@@ -4,17 +4,17 @@ import Card from './Card'
 import { useParams } from "react-router-dom";
 
 const CardApp = ({routines}) => {
-  console.log(routines.routines)
+  console.log(routines.routines[0].exercises)
   const buttonColor = 'bg-blue-500'
   const [buttonName, setButtonName] = useState('Show Exercises')
   const [sideButtonName, setsideButtonName] = useState('Start Workout')
-  const [currentContent, setCurrentContent] = useState(routines.routines)
+  const [currentContent, setCurrentContent] = useState(routines.routines || [])
   const [displayExercises, setDisplayExercises] = useState(false)
   const [animationKey, setAnimationKey] = useState(0)
 
   const handleExerciseClick = (routine) => {
-    if (routine && routine.routines) {
-      setCurrentContent(routine.routines)
+    if (routine && routine.exercises) {
+      setCurrentContent(routine.exercises)
       setDisplayExercises(true)
       setButtonName('Back to Routines')
       setAnimationKey(prevKey => prevKey + 1)

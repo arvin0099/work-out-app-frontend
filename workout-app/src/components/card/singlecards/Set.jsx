@@ -5,51 +5,51 @@ import CardBody from '../CardBody';
 
 const StartSet = () => {
     const [currentSet, setCurrentSet] = useState(1)
-    const totalSets = 3
-    console.log(totalSets)
-
-    const content = routines[1]
-
-    console.log(content)
+    const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0)
+    const content = routines[0]
+    const currentExercise = content.exercises[currentExerciseIndex]
+    const totalSets = currentExercise.sets
+    const totalExercises = content.exercises.length
 
     const handleNextSet = () => {
         if (currentSet < totalSets) {
-            setCurrentSet(currentSet + 1)
+            setCurrentSet(currentSet + 1);
+        } else if (currentExerciseIndex < totalExercises - 1) {
+            setCurrentExerciseIndex(currentExerciseIndex + 1)
+            setCurrentSet(1)
         }
     }
 
+    const isWorkoutComplete = currentSet === totalSets && currentExerciseIndex === totalExercises - 1
+
     return (
-        <div style={{ width: '450px', height: '620px' }} className="bg-slate-300 flex flex-col justify-between">
-            <div className={`shadow-xl relative w-full flex-1 transition-transform duration-500 transform`}>
-                <CardTitle text={content.name.exercises[1].name} />
+        <div className="flex items-center justify-center min-h-screen bg-slate-300">
+            <div style={{ width: '450px', height: '620px' }} className="flex flex-col justify-between bg-white shadow-xl rounded-lg p-4">
+                <CardTitle text={currentExercise.name} />
                 <CardBody>
-                    {Array.isArray(content.exercises) ? (
-                        <ul className="flex flex-col w-full">
-                            {content.exercises.map((exercise, index) => (
-                                <li key={index} className='divider'>
-                                    {exercise.name} - Sets: {exercise.sets}, Reps: {exercise.reps}, Weight: {exercise.weight} lbs
-                                </li>
-                            ))}
-                        </ul>
-                    ) : (
-                        <ul className="flex flex-col w-full">
-                            <li className='divider'>No exercises found</li>
-                        </ul>
-                    )}
+                    <ul className="flex flex-col w-full">
+                        <li className='divider text-xl'>
+                            Sets: {currentExercise.sets}, Reps: {currentExercise.reps}, Weight: {currentExercise.weight} lbs
+                        </li>
+                    </ul>
                 </CardBody>
+                {isWorkoutComplete ? (
+                    <h1 className="text-center text-2xl font-bold py-4 text-blue-600">Congratulations on finishing your workout today!</h1>
+                ) : (
+                    <div className="text-center text-2xl font-bold py-4 text-black">
+                        Set {currentSet} out of {totalSets}
+                    </div>
+                )}
+                <button
+                    onClick={handleNextSet}
+                    className="btn btn-blue-500 w-full mt-4 p-2 rounded text-white"
+                    disabled={isWorkoutComplete}
+                >
+                    {isWorkoutComplete ? 'Go Back to Workouts' : (currentSet === totalSets ? 'Next Exercise' : 'Next Set')}
+                </button>
             </div>
-            <div className="text-center text-2xl font-bold py-4">
-                Set {currentSet} out of {totalSets}
-            </div>
-            <button
-                onClick={handleNextSet}
-                className="btn btn-blue-500 mx-auto mb-4 p-2 rounded text-white"
-                disabled={currentSet === totalSets}
-            >
-                Click for next set
-            </button>
         </div>
-    );
+    )
 }
 
 export default StartSet

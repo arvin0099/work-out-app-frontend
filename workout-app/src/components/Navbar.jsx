@@ -11,12 +11,9 @@ function Navbar({handleLogin, handleSignUp, isLoggedIn, handleLogout}) {
     if(localStorage.userID){
         console.log(localStorage);
     }
-  return (
-    <>
 
-    <div className="navbar bg-base-100">
-        <div className="navbar-start">
-            <div className="dropdown">
+    const menu = (
+        <div className="dropdown">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
                 </div>
@@ -32,18 +29,27 @@ function Navbar({handleLogin, handleSignUp, isLoggedIn, handleLogout}) {
                     </li>
                 </ul>
             </div>
+    )
+
+  return (
+    <>
+
+    <div className="navbar bg-base-100">
+        <div className="navbar-start">
+            {isLoggedIn ? menu : <></>}
+            <div className="flex-none">
+            {localStorage.userName ? <span> Welcome {localStorage.userName} </span> : ""}
+            </div>
         </div>
         <div className="navbar-center">
             <a className="btn btn-ghost text-xl">Fitness App</a>
         </div>
         <div className="navbar-end">
-            <div className="flex-none">
-            {localStorage.userName ? <span> Welcome {localStorage.userName} </span> : ""}
-            </div>
+            
             {/*Modal button and modal box for login*/}
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             {!isLoggedIn ? <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>Log-in</button>: ""}
-            {!isLoggedIn ? <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>Log-in</button> : <button className="btn" onClick={handleLogout}>Logout</button>}
+            {isLoggedIn ? <button className="btn" onClick={handleLogout}>Logout</button> : ""}
             <dialog id="my_modal_1" className="modal" ref={myModalRef}>
                 <div className="modal-box">
                     

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import UCardBody from "./UCardBody";
 import UCardTitle from "./UCardTitle";
-import {cards, workOut} from "../../data"
+import {cards, workOut} from "../../data";
 
 const UCardFront = ({ flipToBack, user }) => {
     return (

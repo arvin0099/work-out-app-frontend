@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Card from './Card'
 import { routines } from '../../data'
+import { useParams } from "react-router-dom";
 
 const CardApp = ({}) => {
   const buttonColor = 'bg-blue-500'
@@ -26,7 +27,9 @@ const CardApp = ({}) => {
     setDisplayExercises(false)
     setButtonName('Show Exercises')
     setAnimationKey(prevKey => prevKey + 1)
-  }
+  } 
+
+  console.log("base routines", routines); 
 
   console.log(routines)
 

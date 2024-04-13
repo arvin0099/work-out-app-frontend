@@ -8,7 +8,9 @@ import Signup from './Signup';
 function Navbar({handleLogin, handleSignUp, isLoggedIn, handleLogout}) {
 
     const myModalRef = useRef(null);
-
+    if(localStorage.userID){
+        console.log(localStorage);
+    }
   return (
     <>
 

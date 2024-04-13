@@ -9,7 +9,7 @@ const UCardBack = ({flipToFront, user}) => {
     })
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
+        const { name, value } = event.target
         setUserData(prevState => ({
             ...prevState,
             [name]: value
@@ -53,7 +53,7 @@ const UCardBack = ({flipToFront, user}) => {
                 <button className="btn btn-error" onClick={handleCancel}>Cancel</button>
             </div>
             <div className="mt-auto w-full flex justify-start items-end">
-                <a className="text-red-600 text-left">**** Revoke Membership ****</a>
+                <a href="" className="text-red-600 text-left">**** Revoke Membership ****</a>
             </div>
         </div>
     )

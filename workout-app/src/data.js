@@ -95,4 +95,55 @@ const cards= [
     },
   ]
 
-  export {cards, workOut}
+  const routines = [
+    {
+        name: 'Chest Workout',
+        exercises: [
+            { name: 'Push ups', sets: 2, reps: 12, weight: 10 },
+            { name: 'Bench Press', sets: 2, reps: 12, weight: 10 }
+        ],
+        day: ['Monday', 'Tuesday']
+    },
+    {
+        name: 'Abs Workout',
+        exercises: [
+            { name: 'Sit Ups', sets: 2, reps: 12, weight: 10 },
+            { name: 'Sit Ups', sets: 2, reps: 12, weight: 10 },
+            { name: 'Sit Ups', sets: 2, reps: 12, weight: 10 },
+            { name: 'Sit Ups', sets: 2, reps: 12, weight: 10 },
+            { name: 'Byccile', sets: 2, reps: 12, weight: 10 }
+        ],
+        day: ['Monday', 'Tuesday']
+    },
+    {
+        name: 'Abs Workout',
+        exercises: [
+            { name: 'Sit Ups', sets: 2, reps: 12, weight: 10 },
+            { name: 'Byccile', sets: 2, reps: 12, weight: 10 }
+        ],
+        day: ['Monday', 'Tuesday']
+    },
+];
+
+const exercises = [
+    {
+    name:  'Push ups',
+    sets: 2,
+    reps: 12,
+    weight: 10,
+    },
+    {
+    name:  'Bench Press',
+    sets: 2,
+    reps: 12,
+    weight: 10,
+    },
+    {
+    name:  'Sit ups',
+    sets: 2,
+    reps: 12,
+    weight: 10,
+    },
+]
+
+  export {cards, workOut, routines, exercises}

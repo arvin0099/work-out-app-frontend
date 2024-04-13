@@ -10,7 +10,7 @@ const UCardFront = ({ flipToBack, user }) => {
           <UCardTitle user={user} />
         </div>
         <div className="w-full flex-1 overflow-auto mt-2 mb-10 bg-slate-100">
-        <UCardBody cards={cards}/>
+        <UCardBody user={user}/>
           <button className="btn btn-primary absolute bottom-2 right-2 btn-sm" onClick={flipToBack}>
             Edit User
           </button>

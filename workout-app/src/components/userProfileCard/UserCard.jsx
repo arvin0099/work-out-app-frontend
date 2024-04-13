@@ -2,10 +2,7 @@ import React, { useState } from 'react'
 import UCardFront from './UCardFrontData'
 import UCardBack from './UCardBack'
 
-//this is the import for the user's data, change to database
-import user from '../../dataUser'
-
-const UCard = () => {
+const UCard = ({user}) => {
     const [isFlipped, setIsFlipped] = useState(false);
 
     const flipToFront = () => setIsFlipped(false)

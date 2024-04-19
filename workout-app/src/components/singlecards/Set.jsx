@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { routines } from '../../../data';
-import CardTitle from '../CardTitle';
-import CardBody from '../CardBody';
+import { routines } from '../../data';
+import CardTitle from '../card/CardTitle';
+import CardBody from '../card/CardBody';
 
 const StartSet = () => {
     const [currentSet, setCurrentSet] = useState(1)

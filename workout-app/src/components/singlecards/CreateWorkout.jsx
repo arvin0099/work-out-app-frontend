@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import CardTitle from '../CardTitle';
-import CardBody from '../CardBody';
+import CardTitle from '../card/CardTitle';
+import CardBody from '../card/CardBody';
 
 const CreateWorkout = () => {
     const [workout, setWorkout] = useState([])

@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import Card from './Card'
-import { routines } from '../../data'
 import { useParams } from "react-router-dom";
 import { logDOM } from '@testing-library/react';
 
-const CardApp = ({}) => {
+const CardApp = ({routines}) => {
+  console.log(routines.routines)
   const buttonColor = 'bg-blue-500'
   const [buttonName, setButtonName] = useState('Show Exercises')
+  const [addButtonName, setAddButtonName] = useState('Add Routine')
   const [sideButtonName, setsideButtonName] = useState('Start Workout')
-  const [currentContent, setCurrentContent] = useState(routines)
+  const [currentContent, setCurrentContent] = useState(routines.routines)
   const [displayExercises, setDisplayExercises] = useState(false)
   const [animationKey, setAnimationKey] = useState(0)
 
   console.log(routines);
+  console.log(routines.routines[0]._id);
 
   const handleExerciseClick = (routine) => {
+    console.log(routine)
     if (routine && routine.exercises) {
       setCurrentContent(routine.exercises)
       setDisplayExercises(true)
       setButtonName('Back to Routines')
+      setAddButtonName('Add Exercise')
       setAnimationKey(prevKey => prevKey + 1)
     } else {
       console.error("nothing")
@@ -26,9 +30,10 @@ const CardApp = ({}) => {
   }
 
   const handleBackToRoutines = () => {
-    setCurrentContent(routines)
+    setCurrentContent(routines.routines)
     setDisplayExercises(false)
     setButtonName('Show Exercises')
+    setAddButtonName('Add Routine')
     setAnimationKey(prevKey => prevKey + 1)
   } 
 
@@ -42,8 +47,14 @@ const CardApp = ({}) => {
     )
 }
 
-  return (
-    <div className="flex justify-center items-center min-h-screen bg-slate-500">
+return (
+  <div className="flex flex-col h-screen bg-slate-500">
+    <div className="p-4 text-right">
+      <button className="btn bg-blue-500 text-white">
+        {addButtonName}
+      </button>
+    </div>
+    <div className="flex-grow flex justify-center items-center">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-1 max-w-4xl mx-auto px-4">
         {currentContent.map((content, index) => (
           <div
@@ -68,7 +79,8 @@ const CardApp = ({}) => {
         ))}
       </div>
     </div>
-    )
+  </div>
+)
 }
 
 

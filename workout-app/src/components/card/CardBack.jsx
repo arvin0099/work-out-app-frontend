@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CardBody from './CardBody';
 
-const CardBack = ({ content, onButtonClick, buttonColor, buttonName, displayExercises, userId, routineId, exerciseId }) => {
+const CardBack = ({ content, onButtonClick, buttonColor, buttonName, displayExercises, routineId, exerciseId }) => {
   console.log(content)
   const [exerciseDetails, setExerciseDetails] = useState({
     sets: content.sets || 0,
@@ -9,13 +9,8 @@ const CardBack = ({ content, onButtonClick, buttonColor, buttonName, displayExer
     weight: content.weight || 0
   })
 
-  // userId = content
-
-
   let token = localStorage.getItem("authoToken")
-  userId = localStorage.getItem("userID")
-  routineId = content._id
-  // exerciseId = content.
+  let userId = localStorage.getItem("userID")
 
   console.log(userId)
   console.log(routineId)

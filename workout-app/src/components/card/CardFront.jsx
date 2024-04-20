@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CardTitle from './CardTitle';
 import CardBody from './CardBody';
 import { useNavigate } from "react-router-dom"
+import { getUserData } from '../GetData';
 
 const CardFront = ({ content, onButtonClick, buttonColor, buttonName, sideButtonName, displayExercises }) => {
   const navigate = useNavigate()
+  // const [content, setContent] = useState()
+  // const userId = localStorage.getItem("userID")
+  
+  
+  // useEffect(()=> {
+  //   const fetchData = async () => {
+  //     try {
+  //       const data = await getUserData(userId);
+  //       // setRoutines(data)
+  //       setContent(data?.routines || [])
+  //       console.log(content)
+  //     } catch (err) {
+  //       console.error("Failed to fetch routines:", err)
+  //     }
+  //   }
+  //   fetchData()
+  // }, [userId])
 
   const onSideButtonClick = () => {
     navigate('/startset', { state: { content } })

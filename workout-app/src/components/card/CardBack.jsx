@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import CardBody from './CardBody'
 import { useNavigate } from "react-router-dom"
 
-const CardBack = ({ content, onButtonClick, buttonColor, buttonName, displayExercises, routineId, exerciseId }) => {
+const CardBack = ({ content, buttonColor, routineId}) => {
   const navigate = useNavigate()
   console.log(content)
   const [exerciseDetails, setExerciseDetails] = useState({
@@ -17,7 +17,9 @@ const CardBack = ({ content, onButtonClick, buttonColor, buttonName, displayExer
   console.log(userId)
   console.log(routineId)
 
-  const URL = `http://localhost:4000/user/${userId}/routine/${routineId}/exercise/${exerciseId}`
+  const URL = `http://localhost:4000/api/user/${userId}/routine/${routineId}/exercise/${content._id}`
+
+  console.log(URL)
 
   useEffect(() => {
     console.log(content);
@@ -30,21 +32,42 @@ const CardBack = ({ content, onButtonClick, buttonColor, buttonName, displayExer
     }
   }, [content])
 
-//   const updateWorkout = async () => {
-//     try {
-//         const response = await fetch(URL, {
-//             method: "PUT",
-//             headers: {
-//                 "Content-Type": "application/json",
-//                 "Authorization": `Bearer ${token}`
-//             },
-//             body: JSON.stringify(exerciseDetails)
-//         })
-//         const data = await response.json();
-//     } catch (error) {
-//         console.error('Failed to update exercise:', error)
-//     }
-// }
+  const updateWorkout = async () => {
+    console.log('hit')
+    try {
+        const response = await fetch(URL, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(exerciseDetails)
+        })
+        console.log('hit')
+        const data = await response.json();
+        console.log(exerciseDetails)
+        console.log(data)
+    } catch (error) {
+        console.error('Failed to update exercise:', error)
+    }
+  }
+
+  const deleteWorkout = async () => {
+    try {
+        const response = await fetch(URL, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(exerciseDetails)
+        })
+        navigate('/routines')
+        const data = await response.json();
+    } catch (error) {
+        console.error('Failed to update exercise:', error)
+    }
+}
 
   const handleIncrement = (field, e) => {
     e.stopPropagation()
@@ -64,11 +87,16 @@ const CardBack = ({ content, onButtonClick, buttonColor, buttonName, displayExer
 
   const handleSave = (e) => {
     e.stopPropagation()
-    onButtonClick()
+    updateWorkout()
   }
 
   const handleNavEdit = (content) => {
     navigate('/editroutine', { state: { routine: content } })
+  }
+
+  const handleDelete = (e) => {
+    e.stopPropagation()
+    deleteWorkout()
   }
 
   return (
@@ -109,12 +137,18 @@ const CardBack = ({ content, onButtonClick, buttonColor, buttonName, displayExer
                   <button className='font-extrabold' onClick={(e) => handleDecrement('weight', e)}>-</button>
                 </li>
               </ul>
-              <button
-                onClick={handleSave}
-                className={`btn ${buttonColor} absolute bottom-2 right-2 btn-sm text-white`}
-              >
-                Save Changes
-              </button>
+                <button
+                  onClick={handleSave}
+                  className={`btn ${buttonColor} absolute bottom-2 right-2 btn-sm text-white`}
+                >
+                  Save Changes
+                </button>
+                <button
+                  onClick={handleDelete}
+                  className={`btn ${buttonColor} absolute bottom-2 left-2 btn-sm text-white bg-red-800`}
+                >
+                  Delete Workout
+                </button>
             </>
           )}
       </div>

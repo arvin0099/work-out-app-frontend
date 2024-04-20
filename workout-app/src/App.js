@@ -141,7 +141,7 @@ function App() {
         <Route path='/createworkout' element={<CreateWorkout />}/>
         <Route path='/editroutine' element={<EditRoutines />}/>
 
-        {/* <Route path='/startset' element={<StartSet />}/> */}
+        <Route path='/startset' element={<StartSet />}/>
       </Routes>
       
     </div>

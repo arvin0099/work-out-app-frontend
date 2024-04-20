@@ -60,7 +60,12 @@ const CardApp = () => {
     setAddButtonName('Add Routine')
     setNavAdd({ path: '/createroutines', state: { nothing: null } })
     setAnimationKey(prevKey => prevKey + 1)
-  } 
+  }
+
+  const handleStartWorkOut = () => {
+    console.log(routines)
+    navigate('/startset', { state: { routines } })
+  }
 
   const handleCreateRoutine = () => {
       navigate(navAdd.path, { state: navAdd.state });
@@ -118,6 +123,11 @@ return (
         ))}
       </div>
     </div>
+    {/* {displayExercises && (
+          <button onClick={handleStartWorkOut} className="btn bg-green-700 text-white mt-4">
+            Start Routine
+          </button>
+        )} */}
   </div>
 )
 }

@@ -5,29 +5,6 @@ import { useNavigate } from "react-router-dom"
 import { getUserData } from '../GetData';
 
 const CardFront = ({ content, onButtonClick, buttonColor, buttonName, sideButtonName, displayExercises }) => {
-  const navigate = useNavigate()
-  // const [content, setContent] = useState()
-  // const userId = localStorage.getItem("userID")
-  
-  
-  // useEffect(()=> {
-  //   const fetchData = async () => {
-  //     try {
-  //       const data = await getUserData(userId);
-  //       // setRoutines(data)
-  //       setContent(data?.routines || [])
-  //       console.log(content)
-  //     } catch (err) {
-  //       console.error("Failed to fetch routines:", err)
-  //     }
-  //   }
-  //   fetchData()
-  // }, [userId])
-
-  const onSideButtonClick = () => {
-    navigate('/startset', { state: { content } })
-  };
-
 
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-start p-3 bg-slate-200 rounded-lg shadow-lg transform backface-hidden">
@@ -61,17 +38,6 @@ const CardFront = ({ content, onButtonClick, buttonColor, buttonName, sideButton
         >
           {buttonName}
         </button>
-        {displayExercises && (
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onSideButtonClick();
-            }}
-            className={`btn ${buttonColor} absolute bottom-2 left-2 btn-sm text-white`}
-          >
-            {sideButtonName}
-          </button>
-        )}
       </div>
     </div>
   )

@@ -6,8 +6,8 @@ import { useNavigate, useLocation } from 'react-router-dom'
 const StartSet = () => {
     const navigate = useNavigate()
     const { state } = useLocation()
-    const set = state.content
-    console.log(state)
+    const set = state.routines
+    console.log(set)
     const [currentSet, setCurrentSet] = useState(1)
     const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0)
     console.log(currentExerciseIndex)

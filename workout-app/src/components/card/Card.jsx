@@ -15,7 +15,7 @@ const Card = ({ frontContent, backContent, onButtonClick, buttonColor, buttonNam
       <div
         className={`shadow-xl relative w-full h-full transition-transform duration-500 transform ${isFlipped ? 'rotate-y-180' : ''} `}
       >
-        <CardFront content={frontContent} onButtonClick={onButtonClick} buttonColor={buttonColor} buttonName={buttonName} sideButtonName={sideButtonName} displayExercises={displayExercises}/>
+        <CardFront content={frontContent} onButtonClick={onButtonClick} buttonColor={buttonColor} buttonName={buttonName} sideButtonName={sideButtonName} displayExercises={displayExercises} routineId ={routineId}/>
         <CardBack content={frontContent} onButtonClick={onButtonClick} buttonColor={buttonColor} buttonName={buttonName} displayExercises={displayExercises} routineId={routineId} />
 
       </div>

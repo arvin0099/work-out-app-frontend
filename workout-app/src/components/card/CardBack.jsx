@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import CardBody from './CardBody'
 import { useNavigate } from "react-router-dom"
+import { getUserData } from '../GetData'
 
 const CardBack = ({ content, buttonColor, routineId}) => {
   const navigate = useNavigate()
-  console.log(content)
   const [exerciseDetails, setExerciseDetails] = useState({
     sets: content.sets || 0,
     reps: content.reps || 0,
     weight: content.weight || 0
   })
 
-  let token = localStorage.getItem("authoToken")
-  let userId = localStorage.getItem("userID")
+  const [currentContent, setCurrentContent] = useState(content)
 
-  console.log(userId)
-  console.log(routineId)
-
+  const userId = localStorage.getItem("userID")
+  const token = localStorage.getItem("authoToken")
   const URL = `http://localhost:4000/api/user/${userId}/routine/${routineId}/exercise/${content._id}`
 
   console.log(URL)
+
 
   useEffect(() => {
     console.log(content);
@@ -44,7 +43,7 @@ const CardBack = ({ content, buttonColor, routineId}) => {
             body: JSON.stringify(exerciseDetails)
         })
         console.log('hit')
-        const data = await response.json();
+        const data = await response.json()
         console.log(exerciseDetails)
         console.log(data)
     } catch (error) {
@@ -62,8 +61,8 @@ const CardBack = ({ content, buttonColor, routineId}) => {
             },
             body: JSON.stringify(exerciseDetails)
         })
+        const data = await response.json()
         navigate('/routines')
-        const data = await response.json();
     } catch (error) {
         console.error('Failed to update exercise:', error)
     }
@@ -97,6 +96,15 @@ const CardBack = ({ content, buttonColor, routineId}) => {
   const handleDelete = (e) => {
     e.stopPropagation()
     deleteWorkout()
+    navigate('/routines')
+  }
+
+  if (currentContent === null) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-slate-500">
+        <p className="text-white text-xl">Loading...</p>
+      </div>
+    )
   }
 
   return (

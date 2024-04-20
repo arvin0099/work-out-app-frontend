@@ -5,6 +5,9 @@ import Home from './components/Home';
 import UserCard from './components/userProfileCard/UserCard';
 import './App.css'
 import CardApp from './components/card/Base';
+import CreateWorkout from './components/singlecards/CreateWorkout';
+import CreateRoutines from './components/singlecards/CreateRoutine';
+import StartSet from './components/singlecards/Set';
 
 function App() {
 
@@ -132,6 +135,9 @@ function App() {
         <Route path={ `/home` } element={<Home isLoggedIn={isLoggedIn}/>}/>
         <Route path={ `/routines` } element={<CardApp isLoggedIn={isLoggedIn} routines={routines}/>}/> 
         <Route path='/userProfile' element={<UserCard isLoggedIn={isLoggedIn} inData={userData}/>}/> 
+        <Route path='/createroutines' element={<CreateRoutines />}/>
+        <Route path='/createworkout' element={<CreateWorkout />}/>
+        {/* <Route path='/startset' element={<StartSet />}/> */}
       </Routes>
       
     </div>

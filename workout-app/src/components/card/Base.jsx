@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react'
 import Card from './Card'
 import { useParams } from "react-router-dom";
 import { logDOM } from '@testing-library/react';
+import { useNavigate } from "react-router-dom"
 
 const CardApp = ({routines}) => {
-  console.log(routines.routines)
   const buttonColor = 'bg-blue-500'
+  const navigate = useNavigate()
   const [buttonName, setButtonName] = useState('Show Exercises')
   const [addButtonName, setAddButtonName] = useState('Add Routine')
   const [sideButtonName, setsideButtonName] = useState('Start Workout')
@@ -13,8 +14,7 @@ const CardApp = ({routines}) => {
   const [displayExercises, setDisplayExercises] = useState(false)
   const [animationKey, setAnimationKey] = useState(0)
 
-  console.log(routines);
-  console.log(routines.routines[0]._id);
+
 
   const handleExerciseClick = (routine) => {
     console.log(routine)
@@ -22,7 +22,7 @@ const CardApp = ({routines}) => {
       setCurrentContent(routine.exercises)
       setDisplayExercises(true)
       setButtonName('Back to Routines')
-      setAddButtonName('Add Exercise')
+      setAddButtonName('Add Workout')
       setAnimationKey(prevKey => prevKey + 1)
     } else {
       console.error("nothing")
@@ -32,10 +32,18 @@ const CardApp = ({routines}) => {
   const handleBackToRoutines = () => {
     setCurrentContent(routines.routines)
     setDisplayExercises(false)
-    setButtonName('Show Exercises')
+    setButtonName('Show Workout')
     setAddButtonName('Add Routine')
     setAnimationKey(prevKey => prevKey + 1)
   } 
+
+  const handleCreateRoutine = () => {
+    if (addButtonName === 'Add Routine') {
+      navigate('/createroutines')
+    } else if (addButtonName === 'Add Workout') {
+      navigate('/createworkout')
+    }
+  }
 
   if (!currentContent.length || currentContent.length === 0) {
     return (
@@ -50,7 +58,7 @@ const CardApp = ({routines}) => {
 return (
   <div className="flex flex-col h-screen bg-slate-500">
     <div className="p-4 text-right">
-      <button className="btn bg-blue-500 text-white">
+      <button onClick={handleCreateRoutine} className="btn bg-blue-500 text-white">
         {addButtonName}
       </button>
     </div>

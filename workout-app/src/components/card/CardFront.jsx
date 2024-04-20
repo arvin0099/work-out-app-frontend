@@ -1,9 +1,16 @@
 import React from 'react';
 import CardTitle from './CardTitle';
 import CardBody from './CardBody';
+import { useNavigate } from "react-router-dom"
 
-const CardFront = ({ content, onButtonClick, buttonColor, buttonName, sideButtonName, onSideButtonClick, displayExercises }) => {
-  console.log(displayExercises)
+const CardFront = ({ content, onButtonClick, buttonColor, buttonName, sideButtonName, displayExercises }) => {
+  const navigate = useNavigate()
+  
+  const onSideButtonClick = () => {
+    navigate('/startset', { state: { content } });
+  };
+
+
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-start p-3 bg-slate-200 rounded-lg shadow-lg transform backface-hidden">
       <div className="w-full">

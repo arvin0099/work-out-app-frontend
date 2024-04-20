@@ -13,8 +13,8 @@ const CardApp = ({routines}) => {
   const [currentContent, setCurrentContent] = useState(routines.routines)
   const [displayExercises, setDisplayExercises] = useState(false)
   const [animationKey, setAnimationKey] = useState(0)
-
-
+  const [navAdd, setNavAdd] = useState({ path: '/createroutines', state: { nothing: null } })
+  console.log(routines)
 
   const handleExerciseClick = (routine) => {
     console.log(routine)
@@ -24,6 +24,8 @@ const CardApp = ({routines}) => {
       setButtonName('Back to Routines')
       setAddButtonName('Add Workout')
       setAnimationKey(prevKey => prevKey + 1)
+      console.log(routine._id)
+      setNavAdd({ path: '/createworkout', state: { routineId: routine._id } })
     } else {
       console.error("nothing")
     }
@@ -34,20 +36,20 @@ const CardApp = ({routines}) => {
     setDisplayExercises(false)
     setButtonName('Show Workout')
     setAddButtonName('Add Routine')
+    setNavAdd({ path: '/createroutines', state: { nothing: null } })
     setAnimationKey(prevKey => prevKey + 1)
   } 
 
   const handleCreateRoutine = () => {
-    if (addButtonName === 'Add Routine') {
-      navigate('/createroutines')
-    } else if (addButtonName === 'Add Workout') {
-      navigate('/createworkout')
-    }
+      navigate(navAdd.path, { state: navAdd.state });
   }
 
   if (!currentContent.length || currentContent.length === 0) {
     return (
-        <div className="flex justify-center items-center min-h-screen bg-slate-500">
+        <div className="flex flex-col h-screen bg-slate-500">
+          <button onClick={handleCreateRoutine} className="btn bg-blue-500 text-white">
+            {addButtonName}
+          </button>
             <div className="text-white text-xl">
                 No data available.
             </div>
@@ -55,14 +57,13 @@ const CardApp = ({routines}) => {
     )
 }
 
+
 return (
   <div className="flex flex-col h-screen bg-slate-500">
-    <div className="p-4 text-right">
       <button onClick={handleCreateRoutine} className="btn bg-blue-500 text-white">
         {addButtonName}
       </button>
-    </div>
-    <div className="flex-grow flex justify-center items-center">
+    <div className="flex-grow flex justify-center items-center bg-slate-500">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-1 max-w-4xl mx-auto px-4">
         {currentContent.map((content, index) => (
           <div

@@ -1,19 +1,42 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import CardTitle from '../card/CardTitle';
 import CardBody from '../card/CardBody';
 
 const CreateWorkout = () => {
     const [newExercise, setNewExercise] = useState({ name: '', sets: '', reps: '', weight: '' })
     const navigate = useNavigate()
+    const { state } = useLocation()
+    const routineId = state.routineId
 
     const handleInputChange = (e) => {
         const { name, value } = e.target
         setNewExercise(prev => ({ ...prev, [name]: value }))
     }
 
-    const createWorkout = () => {
-        console.log('Saving workout:', workout)
+    const userId = localStorage.getItem("userID")
+
+    const createWorkout = async () => {
+        console.log(newExercise)
+        const URL = `http://localhost:4000/api/user/${userId}/routine/${routineId}/exercise`
+        try {
+            const response = await fetch(URL, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("authoToken")}`
+                },
+                body: JSON.stringify(newExercise)
+            });
+            const data = await response.json()
+            if (!response.ok) {
+                throw new Error(data.message || "Unknown error");
+            }
+            navigate('/routines')
+        } catch (error) {
+            console.error('Failed to update user:', error);
+            throw error
+        }
     }
 
     const handleCancel = () => {

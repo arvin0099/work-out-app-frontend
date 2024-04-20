@@ -4,8 +4,7 @@ import CardTitle from '../card/CardTitle';
 import CardBody from '../card/CardBody';
 
 const CreateRoutines = () => {
-    const [routines, setRoutines] = useState([]);
-    const [newRoutine, setNewRoutine] = useState({ name: '', days: [] })
+    const [newRoutine, setNewRoutine] = useState({ name: '', day: [] })
     const navigate = useNavigate()
 
     const handleInputChange = (e) => {
@@ -15,7 +14,7 @@ const CreateRoutines = () => {
 
     const handleDayChange = (e) => {
         const selectedDays = Array.from(e.target.selectedOptions, option => option.value)
-        setNewRoutine(prev => ({ ...prev, days: selectedDays }))
+        setNewRoutine(prev => ({ ...prev, day: selectedDays }))
     }
 
     const userId = localStorage.getItem("userID")
@@ -64,8 +63,8 @@ const CreateRoutines = () => {
                     Select the days of your workout
                     <select
                         multiple
-                        name="days"
-                        value={newRoutine.days}
+                        name="day"
+                        value={newRoutine.day}
                         onChange={handleDayChange}
                         className="select select-bordered w-full mb-2 text-white bg-slate-600"
                         size="7"

@@ -38,7 +38,6 @@ const UCard = ({isLoggedIn, inData}) => {
     
 
     const flipToBack = async () => {
-        
         setLoading(true)
         try {
             const updatedUser = await getUserData(userId)

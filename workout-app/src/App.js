@@ -9,6 +9,7 @@ import CreateWorkout from './components/singlecards/CreateWorkout';
 import CreateRoutines from './components/singlecards/CreateRoutine';
 import StartSet from './components/singlecards/Set';
 
+
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -133,7 +134,7 @@ function App() {
         <Navbar handleLogin={handleLogin} handleSignUp={handleSignUp} handleLogout={handleLogout} isLoggedIn={isLoggedIn}/>
       <Routes>
         <Route path={ `/home` } element={<Home isLoggedIn={isLoggedIn}/>}/>
-        <Route path={ `/routines` } element={<CardApp isLoggedIn={isLoggedIn} routines={routines}/>}/> 
+        <Route path={ `/routines` }  element={<CardApp isLoggedIn={isLoggedIn} routines={routines}/>}/> 
         <Route path='/userProfile' element={<UserCard isLoggedIn={isLoggedIn} inData={userData}/>}/> 
         <Route path='/createroutines' element={<CreateRoutines />}/>
         <Route path='/createworkout' element={<CreateWorkout />}/>

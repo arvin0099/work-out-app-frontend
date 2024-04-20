@@ -34,7 +34,7 @@ function Navbar({handleLogin, handleSignUp, isLoggedIn, handleLogout}) {
   return (
     <>
 
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-200">
         <div className="navbar-start">
             {isLoggedIn ? menu : <></>}
             <div className="flex-none">

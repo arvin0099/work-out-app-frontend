@@ -7,7 +7,7 @@ const StartSet = () => {
     const navigate = useNavigate()
     const { state } = useLocation()
     const set = state.content
-    console.log(set)
+    console.log(state)
     const [currentSet, setCurrentSet] = useState(1)
     const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0)
     console.log(currentExerciseIndex)

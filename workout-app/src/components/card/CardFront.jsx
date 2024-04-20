@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom"
 
 const CardFront = ({ content, onButtonClick, buttonColor, buttonName, sideButtonName, displayExercises }) => {
   const navigate = useNavigate()
-  
+
   const onSideButtonClick = () => {
-    navigate('/startset', { state: { content } });
+    navigate('/startset', { state: { content } })
   };
 
 

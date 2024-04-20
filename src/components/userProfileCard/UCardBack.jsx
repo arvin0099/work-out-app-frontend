@@ -1,12 +1,15 @@
 import React, { useState } from "react"
+import { updateUser } from "../UpdateUser"
 
-const UCardBack = ({flipToFront, user}) => {
+const UCardBack = ({flipToFront, user, handleUserUpdate}) => {
+    console.log(user)
     const [userData, setUserData] = useState({
         firstName: user.firstName,
         lastName: user.lastName,
-        dob: user.DOB,
+        dob: user.dob,
         weight: user.bodyWeight
     })
+
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -21,12 +24,15 @@ const UCardBack = ({flipToFront, user}) => {
         flipToFront()
     }
 
-    //This is where the code handles how data will be submitted, this code is not complete yet.
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        event.stopPropagation()
-        flipToFront()
-        //add code below
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            await handleUserUpdate(userData)
+            
+        } catch (error) {
+            console.error("Update failed:", error.message);
+            alert("Failed to update user: " + error.message);
+        }
     }
 
     return (
@@ -40,11 +46,7 @@ const UCardBack = ({flipToFront, user}) => {
                 <label className="block text-black">
                     Last Name:
                     <input type="text" name="lastName" value={userData.lastName} onChange={handleChange} className="input input-bordered w-full text-white" />
-                </label>
-                <label className="block text-black">
-                    Date of Birth:
-                <input type="date" name="dob" value={userData.dob} onChange={handleChange} className="input input-bordered w-full text-white" />
-                </label>   
+                </label> 
                 <label className="block text-black">
                     Weight in lbs:
                     <input type="number" name="weight" value={userData.weight} onChange={handleChange} className="input input-bordered w-full text-white" />

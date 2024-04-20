@@ -1,9 +1,11 @@
-import React, {useState} from "react";
+import React, {useEffect} from "react";
 import UCardBody from "./UCardBody";
 import UCardTitle from "./UCardTitle";
-import {cards, workOut} from "../../data";
 
 const UCardFront = ({ flipToBack, user }) => {
+  useEffect(() => {
+    console.log("User data in UCardFront:", user);
+}, [user]);
     return (
       <div className="absolute inset-0 flex flex-col items-center justify-start p-3 bg-stone-300 rounded-lg shadow-lg transform backface-hidden">
         <div className="w-full">

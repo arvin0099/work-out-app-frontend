@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CardTitle from './CardTitle';
 import CardBody from './CardBody';
+import { useNavigate } from "react-router-dom"
+import { getUserData } from '../GetData';
 
-const CardFront = ({ content, onButtonClick, buttonColor, buttonName, sideButtonName, onSideButtonClick, displayExercises }) => {
-  console.log(displayExercises)
+const CardFront = ({ content, onButtonClick, buttonColor, buttonName, sideButtonName, displayExercises }) => {
+
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-start p-3 bg-slate-200 rounded-lg shadow-lg transform backface-hidden">
       <div className="w-full">
@@ -36,17 +38,6 @@ const CardFront = ({ content, onButtonClick, buttonColor, buttonName, sideButton
         >
           {buttonName}
         </button>
-        {displayExercises && (
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onSideButtonClick();
-            }}
-            className={`btn ${buttonColor} absolute bottom-2 left-2 btn-sm text-white`}
-          >
-            {sideButtonName}
-          </button>
-        )}
       </div>
     </div>
   )

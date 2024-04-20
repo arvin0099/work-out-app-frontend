@@ -25,7 +25,7 @@ const EditRoutines = () => {
 
     const updateRoutine = async () => {
         console.log(routine);
-        const URL = `http://localhost:4000/api/user/${userId}/routine/${routineId}`
+        const URL = `https://work-out-app-backend-2f34898d7848.herokuapp.com/api/user/${userId}/routine/${routineId}`
         console.log(URL)
         try {
             const response = await fetch(URL, {
@@ -48,7 +48,7 @@ const EditRoutines = () => {
     }
 
     const handleDelete = async () => {
-        const URL = `http://localhost:4000/api/user/${userId}/routine/${routineId}`
+        const URL = `https://work-out-app-backend-2f34898d7848.herokuapp.com/api/user/${userId}/routine/${routineId}`
         try {
             const response = await fetch(URL, {
                 method: "DELETE",

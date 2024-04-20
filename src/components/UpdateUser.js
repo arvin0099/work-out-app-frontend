@@ -2,7 +2,7 @@
 const updateUser = async (userId, userData) => {
     console.log(userId)
     console.log(userData)
-    const URL = `http://localhost:4000/api/user/${userId}`
+    const URL = `https://work-out-app-backend-2f34898d7848.herokuapp.com/api/user/${userId}`
     try {
         const response = await fetch(URL, {
             method: "PUT",

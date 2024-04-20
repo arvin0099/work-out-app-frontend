@@ -1,6 +1,6 @@
 
 const getUserData = async(id) => {
-    const URL = "http://localhost:4000/api/"
+    const URL = "https://work-out-app-backend-2f34898d7848.herokuapp.com/api/"
     id = localStorage.userID;
     console.log(id)
     const response = await fetch(URL + `userdata/${id}`, {

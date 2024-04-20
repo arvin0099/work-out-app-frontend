@@ -18,7 +18,7 @@ const CreateWorkout = () => {
 
     const createWorkout = async () => {
         console.log(newExercise)
-        const URL = `http://localhost:4000/api/user/${userId}/routine/${routineId}/exercise`
+        const URL = `https://work-out-app-backend-2f34898d7848.herokuapp.com/api/user/${userId}/routine/${routineId}/exercise`
         try {
             const response = await fetch(URL, {
                 method: "post",

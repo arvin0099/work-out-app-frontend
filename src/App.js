@@ -21,7 +21,7 @@ function App() {
   const navigate = useNavigate();
 
   //set URL for server
-  const URL = "https://work-out-app-backend-2f34898d7848.herokuapp.com/api";
+  const URL = "https://work-out-app-backend-2f34898d7848.herokuapp.com/api/";
 
   //define what should happen when a user signs up
   const getRoutines = async(id) => {

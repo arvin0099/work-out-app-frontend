@@ -15,7 +15,7 @@ const CardBack = ({ content, buttonColor, routineId}) => {
 
   const userId = localStorage.getItem("userID")
   const token = localStorage.getItem("authoToken")
-  const URL = `http://localhost:4000/api/user/${userId}/routine/${routineId}/exercise/${content._id}`
+  const URL = `https://work-out-app-backend-2f34898d7848.herokuapp.com/api/user/${userId}/routine/${routineId}/exercise/${content._id}`
 
   console.log(URL)
 

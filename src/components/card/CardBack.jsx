@@ -121,7 +121,7 @@ const CardBack = ({ content, buttonColor, routineId}) => {
                   e.stopPropagation()
                   handleNavEdit(content)
                 }}
-                className={`btn ${buttonColor} absolute bottom-2 right-2 btn-sm text-white`}
+                className={`btn ${buttonColor} absolute bottom-2 left-2 btn-sm text-white`}
               >
                 Edit Routine
               </button>

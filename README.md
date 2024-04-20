@@ -25,6 +25,8 @@ Clicking the User Profile will forward you to the user profile page, where you c
 
 _**Links**_
 
+Heroku app: https://work-out-app-frontend-83a4577ee5ff.herokuapp.com
+
 Screenshots
 ![image](https://github.com/arvin0099/work-out-app-frontend/assets/115322225/0c49030d-75e1-4f15-89f8-cb7e09c24ece)
 ![image](https://github.com/arvin0099/work-out-app-frontend/assets/115322225/9d2abbfe-9dc0-40b2-b378-bf8e1ae40f8f)
